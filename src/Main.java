@@ -4,7 +4,8 @@ import java.util.TimerTask;
 
 public class Main {
 
-    private static String str = "";
+    static String str = "";
+    static Scanner s = new Scanner(System.in);
 
     static TimerTask fishingMinigameTimer = new TimerTask()
     {
@@ -13,7 +14,8 @@ public class Main {
 
             if(str.isEmpty())
             {
-                System.out.println("Out of time, type anything to end.");
+                System.out.println("Out of time.");
+                s.close();
             }
         }
     };
@@ -21,7 +23,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner s = new Scanner(System.in);
         Fish testFish = new Fish("Test Fish", 2, 0);
 
         //Catch fish
