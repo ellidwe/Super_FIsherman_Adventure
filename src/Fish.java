@@ -4,6 +4,12 @@ public class Fish {
     int difficulty;
     int price;
 
+    Fish() {
+        this.name = "";
+        this.difficulty = 0;
+        this.price = 0;
+    }
+
     Fish(String name, int difficulty, int price) {
         this.name = name;
         this.difficulty = difficulty;
@@ -83,5 +89,42 @@ public class Fish {
         }
 
         return goalStr;
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public int getDifficulty()
+    {
+        return this.difficulty;
+    }
+
+    public int getPrice()
+    {
+        return this.price;
+    }
+
+    public void setName(String newName)
+    {
+        this.name = newName;
+    }
+
+    public void setDifficulty(int newDifficulty)
+    {
+        this.difficulty = newDifficulty;
+    }
+
+    public void setPrice(int newPrice)
+    {
+        this.price = newPrice;
+    }
+
+    public void setFishStats(String newName, int newDifficulty, int newPrice)
+    {
+        this.name = newName;
+        this.difficulty = newDifficulty;
+        this.price = newPrice;
     }
 }
