@@ -53,7 +53,7 @@ public class Fish {
                         goalStr = "Go fish!";
                         break;
                     case 1: //If difficulty is 1
-                        goalStr = "Man I Love Fishing!!!.";
+                        goalStr = "Man I Love Fishing!!!";
                         break;
                     case 2: //If difficulty is 2
                         goalStr = "There are plenty of fish in the sea";

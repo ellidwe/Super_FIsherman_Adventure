@@ -4,23 +4,24 @@ import java.util.TimerTask;
 
 public class Main {
 
+    static boolean tTaskTriggered = false;
 
-    static String str = "";
     static Scanner s = new Scanner(System.in);
 
-
-    static TimerTask fishingMinigameTimertask = new TimerTask()
-    {
-        public void run()
-        {
-
-            if(str.isEmpty())
-            {
-                System.out.println("The fish got away!!");
-                s.close();
-            }
-        }
-    };
+//    static TimerTask fishingMinigameTimertask = new TimerTask()
+//    {
+//        public void run()
+//        {
+//                System.out.println("The fish got away!!");
+//                s.close();
+//
+////            if(str.isEmpty())
+////            {
+////                System.out.println("The fish got away!!");
+////                s.close();
+////            }
+//        }
+//    };
 
     public static Fish newFish()
     {
@@ -113,28 +114,53 @@ public class Main {
         int timerSecs = (int) (Math.random() * 5) + 8;
 
         Timer fishingMinigameTimer = new Timer();
+        TimerTask fishingMinigameTimertask = new FishingMinigameTask();
 
         goalStr = fish.getCatchingGoalStr();
         System.out.println("Type: " + goalStr);
-
         fishingMinigameTimer.schedule(fishingMinigameTimertask, timerSecs * 1000L);
 
         userStr = s.nextLine();
 
         fishingMinigameTimer.cancel();
         if (userStr.equalsIgnoreCase(goalStr)) {
-            System.out.println("Successful catch!");
-            System.out.println(fish.getName() + " added to inventory!");
+            if (!tTaskTriggered) {
+                System.out.println("Successful catch!");
+                System.out.println(fish.getName() + " added to inventory!");
+                fishingMinigameTimer.cancel();
+            }
         } else {
-            System.out.println("Incorrect String!");
+            if (!tTaskTriggered)
+            {
+                System.out.println("Incorrect String!");
+                fishingMinigameTimer.cancel();
+            }
         }
+    }
+
+    public static void settTaskTriggered()
+    {
+        tTaskTriggered = true;
     }
 
     public static void main(String[] args) {
 
-        Fish fish = new Fish("Test fish", 2, 2);
+        String userCmd = "";
 
-        fishingMinigame(fish);
-
+        System.out.print("What would you like to do? (fish, village, forage) ");
+        while ((!(userCmd.equalsIgnoreCase("fish"))) || (!(userCmd.equalsIgnoreCase("forage"))) || (!(userCmd.equalsIgnoreCase("village")))) {
+            userCmd = s.nextLine();
+            if (userCmd.equalsIgnoreCase("fish")) {
+                fishingMinigame(newFish());
+                System.out.print("What would you like to do? (fish, village, forage) ");
+            } else if (userCmd.equalsIgnoreCase("village")) {
+                System.out.println("tba");
+            } else if (userCmd.equalsIgnoreCase("forage")) {
+                System.out.println("tba");
+            } else {
+                System.out.println("Unrecognized command!");
+            }
+        }
     }
+
 }
