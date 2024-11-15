@@ -96,7 +96,7 @@ public class Main {
     public static void fishingMinigame(Fish fish)
     {
         String goalStr;
-        String userStr = "";
+        String userStr;
         int timerSecs = (int) (Math.random() * 5) + 8;
 
         Timer fishingMinigameTimer = new Timer();
@@ -113,7 +113,7 @@ public class Main {
             if (!tTaskTriggered) {
                 System.out.println("Successful catch!");
                 System.out.println(fish.getName() + " added to inventory!");
-                Player.addToInventory(fish);
+                Player.addToFishInventory(fish);
                 fishingMinigameTimer.cancel();
             }
         } else {
@@ -132,29 +132,75 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Player player = new Player(10, 10, new ArrayList<>());
+        Player player = new Player(3, 5, new ArrayList<>());
 
         String userCmd = "";
 
+        System.out.println("You have " + player.getEnergy() + " actions left before resting.");
         System.out.print("What would you like to do? (fish, village, forage, inventory) ");
         //noinspection ConstantValue
         while (!userCmd.equalsIgnoreCase("fish")
-                || (!(userCmd.equalsIgnoreCase("forage"))) ||
+                || (!(userCmd.equalsIgnoreCase("forage")))
+                || (!(userCmd.equalsIgnoreCase("inventory"))) ||
                 (!(userCmd.equalsIgnoreCase("village")))) {
+
             userCmd = s.nextLine();
+
             if (userCmd.equalsIgnoreCase("fish")) {
                 fishingMinigame(newFish());
-                System.out.print("What would you like to do? (fish, village, forage) ");
+
+                player.setEnergy(player.getEnergy() - 1);
+                if (player.getEnergy() == 2) {
+                    player.moreHungry();
+                    System.out.println("You're growing hungrier. Current hunger level: " + player.getHunger());
+                } else if (player.getEnergy() == 0) {
+                    player.rest();
+                    System.out.println("You rest, and your energy recovers.");
+                    System.out.println("You're growing hungrier. Current hunger level: " + player.getHunger());
+                }
+
+                System.out.println("You have " + player.getEnergy() + " actions left before resting.");
+                System.out.print("What would you like to do? (fish, village, forage, inventory) ");
             } else if (userCmd.equalsIgnoreCase("village")) {
                 System.out.println("tba");
-                System.out.print("What would you like to do? (fish, village, forage) ");
+
+                player.setEnergy(player.getEnergy() - 1);
+                if (player.getEnergy() == 2) {
+                    player.moreHungry();
+                    System.out.println("You're growing hungrier. Current hunger level: " + player.getHunger());
+                } else if (player.getEnergy() == 0) {
+                    player.rest();
+                    System.out.println("You rest, and your energy recovers.");
+                    System.out.println("You're growing hungrier. Current hunger level: " + player.getHunger());
+                }
+
+                System.out.println("You have " + player.getEnergy() + " actions left before resting.");
+                System.out.print("What would you like to do? (fish, village, forage, inventory) ");
             } else if (userCmd.equalsIgnoreCase("forage")) {
                 System.out.println("tba");
-                System.out.print("What would you like to do? (fish, village, forage) ");
-            } else {
+
+                player.setEnergy(player.getEnergy() - 1);
+                if (player.getEnergy() == 2) {
+                    player.moreHungry();
+                    System.out.println("You're growing hungrier. Current hunger level: " + player.getHunger());
+                } else if (player.getEnergy() == 0) {
+                    player.rest();
+                    System.out.println("You rest, and your energy recovers.");
+                    System.out.println("You're growing hungrier. Current hunger level: " + player.getHunger());
+                }
+
+                System.out.println("You have " + player.getEnergy() + " actions left before resting.");
+                System.out.print("What would you like to do? (fish, village, forage, inventory) ");
+            } else if (userCmd.equalsIgnoreCase("inventory")) {
                 System.out.println(player.inventoryToString());
+
+                System.out.println("You have " + player.getEnergy() + " actions left before resting.");
+                System.out.print("What would you like to do? (fish, village, forage, inventory) ");
+            } else {
                 System.out.println("Unrecognized command!");
-                System.out.print("What would you like to do? (fish, village, forage) ");
+
+                System.out.println("You have " + player.getEnergy() + " actions left before resting.");
+                System.out.print("What would you like to do? (fish, village, forage, inventory) ");
             }
         }
     }

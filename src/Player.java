@@ -1,33 +1,32 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Player {
 
     int energy;
     int hunger;
-    private static ArrayList<Fish> inventory = new ArrayList<Fish>();
+    private static ArrayList<Fish> FishInventory = new ArrayList<Fish>();
 
-    Player(int energy, int hunger, ArrayList<Fish> inventory)
+    Player(int energy, int hunger, ArrayList<Fish> FishInventory)
     {
         this.energy = energy;
         this.hunger = hunger;
-        Player.inventory = inventory;
+        Player.FishInventory = FishInventory;
     }
 
-    public static void addToInventory(Fish fish)
+    public static void addToFishInventory(Fish fish)
     {
-        inventory.add(fish);
+        FishInventory.add(fish);
     }
 
     public String inventoryToString()
     {
         String result = "Inventory: ";
 
-        for (int i = 0; i < inventory.size(); i++)
+        for (int i = 0; i < FishInventory.size(); i++)
         {
-            result += inventory.get(i).name;
+            result += FishInventory.get(i).name;
 
-            if (i == inventory.size() - 1)
+            if (i == FishInventory.size() - 1)
             {
                 result += ".";
             } else {
@@ -37,4 +36,37 @@ public class Player {
         return result;
     }
 
+    public int getEnergy()
+    {
+        return energy;
+    }
+
+    public int getHunger()
+    {
+        return hunger;
+    }
+
+    public void setEnergy(int newEnergy)
+    {
+        energy = newEnergy;
+    }
+
+    public void setHunger(int newHunger)
+    {
+        hunger = newHunger;
+    }
+
+    public void rest()
+    {
+        setEnergy(3);
+        moreHungry();
+    }
+
+    public void moreHungry()
+    {
+        setHunger(getHunger() - 1);
+        if (getHunger() == 0) {
+            //kill player
+        }
+    }
 }
