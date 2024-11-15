@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -7,21 +8,6 @@ public class Main {
     static boolean tTaskTriggered = false;
 
     static Scanner s = new Scanner(System.in);
-
-//    static TimerTask fishingMinigameTimertask = new TimerTask()
-//    {
-//        public void run()
-//        {
-//                System.out.println("The fish got away!!");
-//                s.close();
-//
-////            if(str.isEmpty())
-////            {
-////                System.out.println("The fish got away!!");
-////                s.close();
-////            }
-//        }
-//    };
 
     public static Fish newFish()
     {
@@ -127,6 +113,7 @@ public class Main {
             if (!tTaskTriggered) {
                 System.out.println("Successful catch!");
                 System.out.println(fish.getName() + " added to inventory!");
+                Player.addToInventory(fish);
                 fishingMinigameTimer.cancel();
             }
         } else {
@@ -145,22 +132,30 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Player player = new Player(10, 10, new ArrayList<>());
+
         String userCmd = "";
 
-        System.out.print("What would you like to do? (fish, village, forage) ");
-        while ((!(userCmd.equalsIgnoreCase("fish"))) || (!(userCmd.equalsIgnoreCase("forage"))) || (!(userCmd.equalsIgnoreCase("village")))) {
+        System.out.print("What would you like to do? (fish, village, forage, inventory) ");
+        //noinspection ConstantValue
+        while (!userCmd.equalsIgnoreCase("fish")
+                || (!(userCmd.equalsIgnoreCase("forage"))) ||
+                (!(userCmd.equalsIgnoreCase("village")))) {
             userCmd = s.nextLine();
             if (userCmd.equalsIgnoreCase("fish")) {
                 fishingMinigame(newFish());
                 System.out.print("What would you like to do? (fish, village, forage) ");
             } else if (userCmd.equalsIgnoreCase("village")) {
                 System.out.println("tba");
+                System.out.print("What would you like to do? (fish, village, forage) ");
             } else if (userCmd.equalsIgnoreCase("forage")) {
                 System.out.println("tba");
+                System.out.print("What would you like to do? (fish, village, forage) ");
             } else {
+                System.out.println(player.inventoryToString());
                 System.out.println("Unrecognized command!");
+                System.out.print("What would you like to do? (fish, village, forage) ");
             }
         }
     }
-
 }
