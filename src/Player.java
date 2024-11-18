@@ -4,29 +4,34 @@ public class Player {
 
     int energy;
     int hunger;
-    private static ArrayList<Fish> FishInventory = new ArrayList<Fish>();
+    private static ArrayList<Fish> fishInventory = new ArrayList<Fish>();
 
     Player(int energy, int hunger, ArrayList<Fish> FishInventory)
     {
         this.energy = energy;
         this.hunger = hunger;
-        Player.FishInventory = FishInventory;
+        Player.fishInventory = FishInventory;
     }
 
     public static void addToFishInventory(Fish fish)
     {
-        FishInventory.add(fish);
+        fishInventory.add(fish);
+    }
+
+    public static void removeFromFishInventory(int indexToRemove)
+    {
+        fishInventory.remove(indexToRemove);
     }
 
     public String inventoryToString()
     {
         String result = "Inventory: ";
 
-        for (int i = 0; i < FishInventory.size(); i++)
+        for (int i = 0; i < fishInventory.size(); i++)
         {
-            result += FishInventory.get(i).name;
+            result += fishInventory.get(i).name;
 
-            if (i == FishInventory.size() - 1)
+            if (i == fishInventory.size() - 1)
             {
                 result += ".";
             } else {
@@ -35,6 +40,22 @@ public class Player {
         }
         return result;
     }
+
+    public int findIndexOfFishName(String fishName)
+    {
+        int numCommas = 0;
+        int indexOfTarget = inventoryToString().indexOf(fishName);
+        String invBeforeTarget = inventoryToString().substring(0, indexOfTarget);
+        if (!invBeforeTarget.isEmpty()) {
+            for (int i = 0; i < invBeforeTarget.length(); i++) {
+                if (invBeforeTarget.charAt(i) == ',') {
+                    numCommas++;
+                }
+            }
+        }
+        return numCommas;
+    }
+
 
     public int getEnergy()
     {
@@ -66,7 +87,8 @@ public class Player {
     {
         setHunger(getHunger() - 1);
         if (getHunger() == 0) {
-            //kill player
+            System.out.println("You starved to death. Game over.");
+            System.exit(0);
         }
     }
 }
