@@ -94,6 +94,9 @@ public class Main {
     public static void fishingMinigame(Fish fish) {
         String goalStr;
         String userStr;
+
+        tTaskTriggered = false;
+
         int timerSecs = (int) (Math.random() * 5) + 8;
 
         Timer fishingMinigameTimer = new Timer();
@@ -128,7 +131,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Player player = new Player(3, 5, new ArrayList<>());
+        Player player = new Player(3, 5, 1, new ArrayList<>());
+
+        Player.addToFishInventory(new Fish("Bullfrog", 0, 0));
+        System.out.println(player.inventoryToString());
 
         String userCmd = "";
 
@@ -158,20 +164,24 @@ public class Main {
                 System.out.println("You have " + player.getEnergy() + " actions left before resting.");
                 System.out.print("What would you like to do? (fish, village, forage, inventory) ");
             } else if (userCmd.equalsIgnoreCase("village")) {
-                Npc npc = new Npc("Exotic pet fan", 1);
+
+                Npc npc = new Npc("Exotic pet fan", 1, 0, 10, 12, 25, 27, 35, 35, 35);
                 System.out.println(npc.questDialogue());
 
-                if (player.inventoryToString().contains(npc.getQuestItem().substring(0, 10))) {
-                    Player.removeFromFishInventory(player.findIndexOfFishName("Sea turtle"));
-                    System.out.println("W");
-                } else if (player.inventoryToString().contains(npc.getQuestItem().substring(12, 25))) {
-                    Player.removeFromFishInventory(player.findIndexOfFishName("Box jellyfish"));
-                    System.out.println("W");
-                } else if (player.inventoryToString().contains(npc.getQuestItem().substring(27))) {
-                    Player.removeFromFishInventory(player.findIndexOfFishName("Bullfrog"));
-                    System.out.println("W");
+                if (player.inventoryToString().contains(npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2()))) {
+                    Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2())));
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2()));
+                } else if (player.inventoryToString().contains(npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4()))) {
+                    Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4())));
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2()));
+                } else if (player.inventoryToString().contains(npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6()))) {
+                    Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6())));
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6()));
+                } else if (player.inventoryToString().contains(npc.getQuestItem().substring(npc.getIndex8(), npc.getIndex8()))) {
+                    Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex8(), npc.getIndex8())));
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8()));
                 } else
-                    System.out.println("You don't have the required item(s)!");
+                    System.out.println("You don't have the required fish!");
 
                 player.setEnergy(player.getEnergy() - 1);
                 if (player.getEnergy() == 2) {

@@ -4,7 +4,7 @@ public class FishingMinigameTask extends TimerTask {
 
     public void run()
     {
-        System.out.println("The fish got away!! Type anything to exit.");
+        System.out.print("The fish got away!! Type anything to exit.");
         Main.settTaskTriggered();
     }
 }

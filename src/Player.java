@@ -4,12 +4,14 @@ public class Player {
 
     int energy;
     int hunger;
+    int rests;
     private static ArrayList<Fish> fishInventory = new ArrayList<Fish>();
 
-    Player(int energy, int hunger, ArrayList<Fish> FishInventory)
+    Player(int energy, int hunger, int rests, ArrayList<Fish> FishInventory)
     {
         this.energy = energy;
         this.hunger = hunger;
+        this.rests = rests;
         Player.fishInventory = FishInventory;
     }
 
@@ -46,6 +48,7 @@ public class Player {
         int numCommas = 0;
         int indexOfTarget = inventoryToString().indexOf(fishName);
         String invBeforeTarget = inventoryToString().substring(0, indexOfTarget);
+
         if (!invBeforeTarget.isEmpty()) {
             for (int i = 0; i < invBeforeTarget.length(); i++) {
                 if (invBeforeTarget.charAt(i) == ',') {
@@ -55,7 +58,6 @@ public class Player {
         }
         return numCommas;
     }
-
 
     public int getEnergy()
     {
@@ -81,6 +83,18 @@ public class Player {
     {
         setEnergy(3);
         moreHungry();
+        rests += 1;
+    }
+
+    public Npc villageRefresh()
+    {
+        Npc npc = new Npc ("", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        int randInt = (int) (Math.random() * 9) + 1;
+        switch (randInt) {
+            case 1:
+//                return
+        }
+        return npc;
     }
 
     public void moreHungry()
