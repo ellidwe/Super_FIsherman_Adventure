@@ -60,8 +60,13 @@ public class Npc {
                 return "Electric eel, Salmon, Tuna fish, King salmon";
             case 5:
                 return "Piranha, Electric eel, Box jellyfish0";
+            default:
+                return "0000";
         }
-        return "";
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getIndex1() {
@@ -94,6 +99,59 @@ public class Npc {
 
     public int getIndex8() {
         return index8;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setQuestMarker(int questMarker) {
+        this.questMarker = questMarker;
+    }
+
+    public void setIndex1(int index1) {
+        this.index1 = index1;
+    }
+
+    public void setIndex2(int index2) {
+        this.index2 = index2;
+    }
+
+    public void setIndex3(int index3) {
+        this.index3 = index3;
+    }
+
+    public void setIndex4(int index4) {
+        this.index4 = index4;
+    }
+
+    public void setIndex5(int index5) {
+        this.index5 = index5;
+    }
+
+    public void setIndex6(int index6) {
+        this.index6 = index6;
+    }
+
+    public void setIndex7(int index7) {
+        this.index7 = index7;
+    }
+
+    public void setIndex8(int index8) {
+        this.index8 = index8;
+    }
+
+    public void setNpcStats(String newName, int newQuestMarker, int newIndex1, int newIndex2, int newIndex3, int newIndex4, int newIndex5, int newIndex6, int newIndex7, int newIndex8) {
+        setName(newName);
+        setQuestMarker(newQuestMarker);
+        setIndex1(newIndex1);
+        setIndex2(newIndex2);
+        setIndex3(newIndex3);
+        setIndex4(newIndex4);
+        setIndex5(newIndex5);
+        setIndex6(newIndex6);
+        setIndex7(newIndex7);
+        setIndex8(newIndex8);
     }
 
 }
