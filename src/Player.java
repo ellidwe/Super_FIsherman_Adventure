@@ -5,13 +5,15 @@ public class Player {
     int energy;
     int hunger;
     int rests;
+    int score;
     private static ArrayList<Fish> fishInventory = new ArrayList<Fish>();
 
-    Player(int energy, int hunger, int rests, ArrayList<Fish> FishInventory)
+    Player(int energy, int hunger, int rests, int score, ArrayList<Fish> FishInventory)
     {
         this.energy = energy;
         this.hunger = hunger;
         this.rests = rests;
+        this.score = score;
         Player.fishInventory = FishInventory;
     }
 
@@ -69,6 +71,14 @@ public class Player {
         return hunger;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public static ArrayList<Fish> getFishInventory() {
+        return fishInventory;
+    }
+
     public void setEnergy(int newEnergy)
     {
         energy = newEnergy;
@@ -77,6 +87,10 @@ public class Player {
     public void setHunger(int newHunger)
     {
         hunger = newHunger;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public void rest()
@@ -95,19 +109,19 @@ public class Player {
                 npc.setNpcStats("Expert fisherman", 0,0,0,0,0,0,0,0,0);
                 return npc;
             case 1:
-                npc.setNpcStats("Exotic pet fan", 1,0,10,12,25,27,35,35,35);
+                npc.setNpcStats("Exotic pet fan", 1,0,10,12,25,27,35,35,36);
                 return npc;
             case 2:
-                npc.setNpcStats("Little kid", 2,0,17,19,35,35,35,35,35);
+                npc.setNpcStats("Little kid", 2,0,17,19,35,35,36,35,36);
                 return npc;
             case 3:
-                npc.setNpcStats("Mr. Carp", 3,0,4,4,4,4,4,4,4);
+                npc.setNpcStats("Mr. Carp", 3,0,4,4,5,4,5,4,5);
                 return npc;
             case 4:
                 npc.setNpcStats("Sushi chef", 4,0,12,14,20,22,31,33,44);
                 return npc;
             case 5:
-                npc.setNpcStats("Trustworthy man", 5,0,7,9,21,23,36,36,36);
+                npc.setNpcStats("Trustworthy man", 5,0,7,9,21,23,36,36,37);
                 return npc;
             case 6:
                 npc.setNpcStats("Dejected fisherman", 6,0,0,0,0,0,0,0,0);

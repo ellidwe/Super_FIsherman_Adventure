@@ -62,7 +62,7 @@ public class Main {
                 case 6:
                     fish.setFishStats("Blue crab", 1, 3);
                     break;
-                  }
+            }
         } else { //Common fish
             switch (randIntFish) {
                 case 0:
@@ -118,8 +118,7 @@ public class Main {
                 fishingMinigameTimer.cancel();
             }
         } else {
-            if (!tTaskTriggered)
-            {
+            if (!tTaskTriggered) {
                 System.out.println("Incorrect String!");
                 System.out.println();
                 fishingMinigameTimer.cancel();
@@ -131,10 +130,9 @@ public class Main {
         tTaskTriggered = true;
     }
 
-    static Player player = new Player(3, 5, 1, new ArrayList<>());
+    static Player player = new Player(3, 5, 1, 0, new ArrayList<>());
 
-    public static void npcQuestHandling(Npc npc)
-    {
+    public static void npcQuestHandling(Npc npc) {
         String userYesOrNo = "";
 
         System.out.println(npc.questDialogue());
@@ -146,6 +144,8 @@ public class Main {
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2())));
                     System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2()));
+                    player.setScore(player.getScore() + 20);
+
                 }
             } else if (player.inventoryToString().contains(npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4()))) {
                 System.out.println("Give them the " + npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4()) + "? (y to give)");
@@ -153,6 +153,8 @@ public class Main {
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4())));
                     System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4()));
+                    player.setScore(player.getScore() + 20);
+
                 }
             } else if (player.inventoryToString().contains(npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6()))) {
                 System.out.println("Give them the " + npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6()) + "? (y to give)");
@@ -160,13 +162,16 @@ public class Main {
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6())));
                     System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6()));
+                    player.setScore(player.getScore() + 20);
+
                 }
             } else if (player.inventoryToString().contains(npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8()))) {
                 System.out.println("Give them the " + npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8()) + "? (y to give)");
                 userYesOrNo = s.nextLine();
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8())));
-                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8()));
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8()) + " . You get 20 points!");
+                    player.setScore(player.getScore() + 20);
                 }
             } else {
                 System.out.println("You don't have the required fish!");
@@ -176,7 +181,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Player player = new Player(3, 5, 1, new ArrayList<>());
+        System.out.println("Welcome to Super Fisherman Adventure! Your goal in the game is to earn the most points before you die of starvation. \n You can earn points via catching fish, and either selling them to the fish buyer, or, if you have the right fish, \n giving them to an NPC in the village to complete a quest. \n Have fun! \n");
+
+        Player player = new Player(3, 5, 1, 0, new ArrayList<>());
 
         Npc npc1 = Player.newNpc();
         Npc npc2 = Player.newNpc();
@@ -202,8 +209,12 @@ public class Main {
                 player.setEnergy(player.getEnergy() - 1);
                 if (player.getEnergy() == 0) {
                     player.rest();
+                    npc1 = Player.newNpc();
+                    npc2 = Player.newNpc();
+                    npc3 = Player.newNpc();
                     if (player.getHunger() == 0) {
                         System.out.println("You starved. Game over.");
+                        System.out.println("Score: " + player.getScore());
                         System.exit(0);
                     }
                     System.out.println("You rest, and your energy recovers.");
@@ -213,29 +224,53 @@ public class Main {
                 System.out.println("You have " + player.getEnergy() + " actions left before resting.");
                 System.out.print("What would you like to do? (fish, village, forage, inventory) ");
             } else if (userCmd.equalsIgnoreCase("village")) {
-                System.out.println("Who would you like to talk to? " + npc1.getName() + " (a), " + npc2.getName() + " (b) " + npc3.getName() + " (c)");
+                System.out.println("Who would you like to talk to? " + npc1.getName() + ", (a) " + npc2.getName() + ", (b) " + npc3.getName() + ", (c) the fish buyer (d) or nobody? (leave)");
 
-                while ((!userNpcChoice.equalsIgnoreCase("a")) || (!userNpcChoice.equalsIgnoreCase("b")) || (!userNpcChoice.equalsIgnoreCase("c"))) {
+                while ((!userNpcChoice.equalsIgnoreCase("a")) || (!userNpcChoice.equalsIgnoreCase("b")) || (!userNpcChoice.equalsIgnoreCase("c")) || (!userNpcChoice.equalsIgnoreCase("d")) || (!userNpcChoice.equalsIgnoreCase("leave"))) {
 
                     userNpcChoice = s.nextLine();
 
                     if (userNpcChoice.equalsIgnoreCase("a")) {
                         npcQuestHandling(npc1);
+                        System.out.println("Who would you like to talk to? " + npc1.getName() + ", (a) " + npc2.getName() + ", (b) " + npc3.getName() + ", (c) the fish buyer (d) or nobody? (leave)");
                     } else if (userNpcChoice.equalsIgnoreCase("b")) {
                         npcQuestHandling(npc2);
+                        System.out.println("Who would you like to talk to? " + npc1.getName() + ", (a) " + npc2.getName() + ", (b) " + npc3.getName() + ", (c) the fish buyer (d) or nobody? (leave)");
                     } else if (userNpcChoice.equalsIgnoreCase("c")) {
                         npcQuestHandling(npc3);
+                        System.out.println("Who would you like to talk to? " + npc1.getName() + ", (a) " + npc2.getName() + ", (b) " + npc3.getName() + ", (c) the fish buyer (d) or nobody? (leave)");
+                    } else if (userNpcChoice.equalsIgnoreCase("d")) {
+                        System.out.println("\"Welcome to the shop! What're ya sellin'!\"");
+                        for (int i = 0; i < Player.getFishInventory().size(); i++ ) {
+                            System.out.println("Would you like to sell your " + Player.getFishInventory().get(i).getName() + " (y to sell)");
+                            String userY = s.nextLine();
+                            if (userY.equalsIgnoreCase("y")) {
+                                System.out.println("Sold " + Player.getFishInventory().get(i).getName() + " for " + Player.getFishInventory().get(i).getPrice() + " points");
+                                player.setScore(player.getScore() + Player.getFishInventory().get(i).getPrice());
+                                Player.removeFromFishInventory(Player.getFishInventory().indexOf(Player.getFishInventory().get(i)));
+                            }
+                        }
+                        System.out.println("\"Have a good one!\"");
+                        System.out.println();
+                        System.out.println("Who would you like to talk to? " + npc1.getName() + ", (a) " + npc2.getName() + ", (b) " + npc3.getName() + ", (c) or nobody? (leave)");
+                    } else if (userNpcChoice.equalsIgnoreCase("leave")) {
+                        break;
                     } else {
                         System.out.println("Unrecognized command!");
-                    }
+                        System.out.println("Who would you like to talk to? " + npc1.getName() + ", (a) " + npc2.getName() + ", (b) " + npc3.getName() + ", (c) or nobody? (leave)");
 
+                    }
                 }
 
                 player.setEnergy(player.getEnergy() - 1);
                 if (player.getEnergy() == 0) {
                     player.rest();
+                    npc1 = Player.newNpc();
+                    npc2 = Player.newNpc();
+                    npc3 = Player.newNpc();
                     if (player.getHunger() == 0) {
                         System.out.println("You starved. Game over.");
+                        System.out.println("Score: " + player.getScore());
                         System.exit(0);
                     }
                     System.out.println("You rest, and your energy recovers.");
@@ -244,6 +279,7 @@ public class Main {
 
                 System.out.println("You have " + player.getEnergy() + " actions left before resting.");
                 System.out.print("What would you like to do? (fish, village, forage, inventory) ");
+
             } else if (userCmd.equalsIgnoreCase("forage")) {
                 System.out.println("Not yet added, if you're playtesting ignore this");
                 System.out.println();
@@ -251,8 +287,12 @@ public class Main {
                 player.setEnergy(player.getEnergy() - 1);
                 if (player.getEnergy() == 0) {
                     player.rest();
+                    npc1 = Player.newNpc();
+                    npc2 = Player.newNpc();
+                    npc3 = Player.newNpc();
                     if (player.getHunger() == 0) {
                         System.out.println("You starved. Game over.");
+                        System.out.println("Score: " + player.getScore());
                         System.exit(0);
                     }
                     System.out.println("You rest, and your energy recovers.");
