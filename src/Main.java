@@ -143,7 +143,7 @@ public class Main {
                 userYesOrNo = s.nextLine();
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2())));
-                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2()));
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2()) + ". You get 20 points!");
                     player.setScore(player.getScore() + 20);
 
                 }
@@ -152,7 +152,7 @@ public class Main {
                 userYesOrNo = s.nextLine();
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4())));
-                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4()));
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4()) + ". You get 20 points!");
                     player.setScore(player.getScore() + 20);
 
                 }
@@ -161,7 +161,7 @@ public class Main {
                 userYesOrNo = s.nextLine();
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6())));
-                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6()));
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6()) + ". You get 20 points!");
                     player.setScore(player.getScore() + 20);
 
                 }
@@ -170,7 +170,7 @@ public class Main {
                 userYesOrNo = s.nextLine();
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8())));
-                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8()) + " . You get 20 points!");
+                    System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8()) + ". You get 20 points!");
                     player.setScore(player.getScore() + 20);
                 }
             } else {
@@ -181,7 +181,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Super Fisherman Adventure! Your goal in the game is to earn the most points before you die of starvation. \n You can earn points via catching fish, and either selling them to the fish buyer, or, if you have the right fish, \n giving them to an NPC in the village to complete a quest. \n Have fun! \n");
+        System.out.println("Welcome to Super Fisherman Adventure! Your goal in the game is to earn the most points before you die of starvation. \nYou can earn points via catching fish, and either selling them to the fish buyer, or, if you have the right fish, \ngiving them to an NPC in the village to complete a quest. \nHave fun! \n");
 
         Player player = new Player(3, 5, 1, 0, new ArrayList<>());
 
