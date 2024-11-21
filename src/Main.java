@@ -144,6 +144,7 @@ public class Main {
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2())));
                     System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex1(), npc.getIndex2()) + ". You get 20 points!");
+                    System.out.println();
                     player.setScore(player.getScore() + 20);
 
                 }
@@ -153,6 +154,7 @@ public class Main {
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4())));
                     System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex3(), npc.getIndex4()) + ". You get 20 points!");
+                    System.out.println();
                     player.setScore(player.getScore() + 20);
 
                 }
@@ -162,6 +164,7 @@ public class Main {
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6())));
                     System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex5(), npc.getIndex6()) + ". You get 20 points!");
+                    System.out.println();
                     player.setScore(player.getScore() + 20);
 
                 }
@@ -171,6 +174,7 @@ public class Main {
                 if (userYesOrNo.equalsIgnoreCase("y")) {
                     Player.removeFromFishInventory(player.findIndexOfFishName(npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8())));
                     System.out.println("You gave them the " + npc.getQuestItem().substring(npc.getIndex7(), npc.getIndex8()) + ". You get 20 points!");
+                    System.out.println();
                     player.setScore(player.getScore() + 20);
                 }
             } else {
@@ -192,7 +196,6 @@ public class Main {
 
         System.out.println("You have " + player.getEnergy() + " actions left before resting.");
         System.out.print("What would you like to do? (fish, village, forage, inventory) ");
-        System.out.println();
         //noinspection ConstantValue
         while (!userCmd.equalsIgnoreCase("fish")
                 || (!(userCmd.equalsIgnoreCase("forage")))
@@ -222,6 +225,7 @@ public class Main {
                 System.out.println("You have " + player.getEnergy() + " actions left before resting.");
                 System.out.print("What would you like to do? (fish, village, forage, inventory) ");
             } else if (userCmd.equalsIgnoreCase("village")) {
+                System.out.println();
                 System.out.println("Who would you like to talk to? (a) " + npc1.getName() + " (b) " + npc2.getName() + " (c) " + npc3.getName() + " (d) the fish buyer (leave) or nobody?");
 
                 while ((!userNpcChoice.equalsIgnoreCase("a")) || (!userNpcChoice.equalsIgnoreCase("b")) || (!userNpcChoice.equalsIgnoreCase("c")) || (!userNpcChoice.equalsIgnoreCase("d")) || (!userNpcChoice.equalsIgnoreCase("leave"))) {
@@ -239,13 +243,16 @@ public class Main {
                         System.out.println("Who would you like to talk to? (a) " + npc1.getName() + " (b) " + npc2.getName() + " (c) " + npc3.getName() + " (d) the fish buyer (leave) or nobody?");
                     } else if (userNpcChoice.equalsIgnoreCase("d")) {
                         System.out.println("\"Welcome to the shop! What're ya sellin'!\"");
-                        for (int i = 0; i < Player.getFishInventory().size(); i++ ) {
+                        int i = 0;
+                        while (i < Player.getFishInventory().size()) {
                             System.out.println("Would you like to sell your " + Player.getFishInventory().get(i).getName() + " (y to sell)");
                             String userY = s.nextLine();
                             if (userY.equalsIgnoreCase("y")) {
                                 System.out.println("Sold " + Player.getFishInventory().get(i).getName() + " for " + Player.getFishInventory().get(i).getPrice() + " points");
                                 player.setScore(player.getScore() + Player.getFishInventory().get(i).getPrice());
                                 Player.removeFromFishInventory(Player.getFishInventory().indexOf(Player.getFishInventory().get(i)));
+                            } else {
+                                i++;
                             }
                         }
                         System.out.println("\"Have a good one!\"");
