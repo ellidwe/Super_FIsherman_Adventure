@@ -183,8 +183,6 @@ public class Main {
 
         System.out.println("Welcome to Super Fisherman Adventure! Your goal in the game is to earn the most points before you die of starvation. \nYou can earn points via catching fish, and either selling them to the fish buyer, or, if you have the right fish, \ngiving them to an NPC in the village to complete a quest. \nHave fun! \n");
 
-        Player player = new Player(3, 5, 1, 0, new ArrayList<>());
-
         Npc npc1 = Player.newNpc();
         Npc npc2 = Player.newNpc();
         Npc npc3 = Player.newNpc();
