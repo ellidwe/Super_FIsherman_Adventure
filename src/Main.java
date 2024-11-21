@@ -222,7 +222,7 @@ public class Main {
                 System.out.println("You have " + player.getEnergy() + " actions left before resting.");
                 System.out.print("What would you like to do? (fish, village, forage, inventory) ");
             } else if (userCmd.equalsIgnoreCase("village")) {
-                System.out.println("Who would you like to talk to? " + npc1.getName() + " (a) " + npc2.getName() + " (b) " + npc3.getName() + " (c) the fish buyer (d) or nobody? (leave)");
+                System.out.println("Who would you like to talk to? (a) " + npc1.getName() + " (b) " + npc2.getName() + " (c) " + npc3.getName() + " (d) the fish buyer (leave) or nobody?");
 
                 while ((!userNpcChoice.equalsIgnoreCase("a")) || (!userNpcChoice.equalsIgnoreCase("b")) || (!userNpcChoice.equalsIgnoreCase("c")) || (!userNpcChoice.equalsIgnoreCase("d")) || (!userNpcChoice.equalsIgnoreCase("leave"))) {
 
@@ -230,13 +230,13 @@ public class Main {
 
                     if (userNpcChoice.equalsIgnoreCase("a")) {
                         npcQuestHandling(npc1);
-                        System.out.println("Who would you like to talk to? " + npc1.getName() + " (a) " + npc2.getName() + " (b) " + npc3.getName() + " (c) the fish buyer (d) or nobody? (leave)");
+                        System.out.println("Who would you like to talk to? (a) " + npc1.getName() + " (b) " + npc2.getName() + " (c) " + npc3.getName() + " (d) the fish buyer (leave) or nobody?");
                     } else if (userNpcChoice.equalsIgnoreCase("b")) {
                         npcQuestHandling(npc2);
-                        System.out.println("Who would you like to talk to? " + npc1.getName() + " (a) " + npc2.getName() + " (b) " + npc3.getName() + " (c) the fish buyer (d) or nobody? (leave)");
+                        System.out.println("Who would you like to talk to? (a) " + npc1.getName() + " (b) " + npc2.getName() + " (c) " + npc3.getName() + " (d) the fish buyer (leave) or nobody?");
                     } else if (userNpcChoice.equalsIgnoreCase("c")) {
                         npcQuestHandling(npc3);
-                        System.out.println("Who would you like to talk to? " + npc1.getName() + " (a) " + npc2.getName() + " (b) " + npc3.getName() + " (c) the fish buyer (d) or nobody? (leave)");
+                        System.out.println("Who would you like to talk to? (a) " + npc1.getName() + " (b) " + npc2.getName() + " (c) " + npc3.getName() + " (d) the fish buyer (leave) or nobody?");
                     } else if (userNpcChoice.equalsIgnoreCase("d")) {
                         System.out.println("\"Welcome to the shop! What're ya sellin'!\"");
                         for (int i = 0; i < Player.getFishInventory().size(); i++ ) {
@@ -250,12 +250,12 @@ public class Main {
                         }
                         System.out.println("\"Have a good one!\"");
                         System.out.println();
-                        System.out.println("Who would you like to talk to? " + npc1.getName() + " (a) " + npc2.getName() + " (b) " + npc3.getName() + " (c) the fish buyer (d) or nobody? (leave)");
+                        System.out.println("Who would you like to talk to? (a) " + npc1.getName() + " (b) " + npc2.getName() + " (c) " + npc3.getName() + " (d) the fish buyer (leave) or nobody?");
                     } else if (userNpcChoice.equalsIgnoreCase("leave")) {
                         break;
                     } else {
                         System.out.println("Unrecognized command!");
-                        System.out.println("Who would you like to talk to? " + npc1.getName() + " (a) " + npc2.getName() + " (b) " + npc3.getName() + " (c) the fish buyer (d) or nobody? (leave)");
+                        System.out.println("Who would you like to talk to? (a) " + npc1.getName() + " (b) " + npc2.getName() + " (c) " + npc3.getName() + " (d) the fish buyer (leave) or nobody?");
 
                     }
                 }
